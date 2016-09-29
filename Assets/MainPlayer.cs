@@ -9,6 +9,9 @@ public class MainPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GetComponent<Renderer>().material.color.a <= 0) {
+            Destroy(GetComponent<Renderer>());
+        }
         transform.Translate(3 * Vector2.left * Time.deltaTime);
 	}
 
