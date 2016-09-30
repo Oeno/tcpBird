@@ -9,11 +9,15 @@ public class MainPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GetComponent<Renderer>().material.color.a <= 0) {
-            Destroy(GetComponent<Renderer>());
+        if (GetComponent<SpriteRenderer>().material.color.a <= 0.1f) {
+            StopCoroutine("Fade");
+            Destroy(this);
         }
-        transform.Translate(3 * Vector2.left * Time.deltaTime);
+        transform.Translate(5 * Vector2.left * Time.deltaTime);
 	}
+
+    void Reset() {
+    }
 
     IEnumerator Fade() {
         for (float f=1f; f>=0; f-=0.2f) {
