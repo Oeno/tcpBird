@@ -11,13 +11,10 @@ public class MainPlayer : MonoBehaviour {
 	void Update () {
         if (GetComponent<SpriteRenderer>().material.color.a <= 0.1f) {
             StopCoroutine("Fade");
-            Destroy(this);
+            Destroy(this.gameObject);
         }
-        transform.Translate(5 * Vector2.left * Time.deltaTime);
+        transform.Translate(10 * Vector2.left * Time.deltaTime);
 	}
-
-    void Reset() {
-    }
 
     IEnumerator Fade() {
         for (float f=1f; f>=0; f-=0.2f) {
