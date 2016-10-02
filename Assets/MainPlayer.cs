@@ -4,24 +4,16 @@ using System.Collections;
 public class MainPlayer : MonoBehaviour {
     // Use this for initialization
     void Start () {
-        StartCoroutine("Fade");
+        StartCoroutine(Stop(5.5f));
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (GetComponent<SpriteRenderer>().material.color.a <= 0.1f) {
-            StopCoroutine("Fade");
-            Destroy(this.gameObject);
-        }
         transform.Translate(10 * Vector2.left * Time.deltaTime);
-	}
+    }
 
-    IEnumerator Fade() {
-        for (float f=1f; f>=0; f-=0.2f) {
-            Color c = GetComponent<Renderer>().material.color;
-            c.a = f;
-            GetComponent<Renderer>().material.color = c;
-            yield return new WaitForSeconds(1f);
-        }
+    IEnumerator Stop(float time) {
+        Destroy(this.gameObject, time);
+        yield return null;
     }
 }
