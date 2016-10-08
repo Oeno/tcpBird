@@ -2,17 +2,15 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-    public static GameManager   instance;
+    public static GameManager Instance;
 
     int score = 0;
 
-    void Awake()
-    {
-        instance = this;
+    void Awake() {
+        Instance = this;
     }
 
-    public void AddScore()
-    {
+    public void AddScore() {
         score++;
         Debug.Log("Score: " + score);
     }

@@ -2,15 +2,15 @@
 using System.Collections;
 
 public class MainPlayer : MonoBehaviour {
-    public float speed = 10;
-    public float destroyTime = 5.0f;
-    public float yIntervalRange = 5.0f;
+    public float speed = 10f;
+    public float destroyTime = 5f;
+    public float yIntervalRange = 5f;
 
     public Transform topWallTr;
     public Transform btmWallTr;
 
     void Start () {
-        var yRange = Random.Range(yIntervalRange, 2* yIntervalRange);
+        float yRange = Random.Range(yIntervalRange, 2* yIntervalRange);
         topWallTr.localPosition = new Vector3(0, yRange, 0);
         btmWallTr.localPosition = new Vector3(0, -yRange, 0);
 
@@ -23,7 +23,9 @@ public class MainPlayer : MonoBehaviour {
 
     IEnumerator DestroyObj() {
         yield return new WaitForSeconds(destroyTime);
-        GameManager.instance.AddScore();
-        Destroy(gameObject);
+
+        GameManager.Instance.AddScore();
+
+        Destroy(this.gameObject);
     }
 }
