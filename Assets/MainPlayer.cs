@@ -18,7 +18,7 @@ public class MainPlayer : MonoBehaviour {
     }
 	
 	void Update () {
-        transform.Translate(speed * Vector2.left * Time.deltaTime);
+        transform.Translate(speed * Vector3.left * Time.deltaTime);
     }
 
     IEnumerator DestroyObj() {
