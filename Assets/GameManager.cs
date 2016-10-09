@@ -4,11 +4,17 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
 
-    int score = 0;
-    bool isCollide = false;
+    int score = 0;  // 점수
+    bool isCollide = false; // 충돌 여부 확인
+    float optSpeed = 0f;  // 벽에 시간에 따른 추가 속도 부여
 
     void Awake() {
         Instance = this;
+    }
+
+    void Update()
+    {
+        optSpeed += Time.deltaTime;
     }
 
     public void AddScore() {
@@ -22,5 +28,10 @@ public class GameManager : MonoBehaviour {
 
     public void setIsCollide(bool isCollide) {
         this.isCollide = isCollide;
+    }
+
+    public float getOptSpeed()
+    {
+        return optSpeed;
     }
 }

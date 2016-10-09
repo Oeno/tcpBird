@@ -180,6 +180,7 @@ MonoBehaviour:
   speed: 10
   destroyTime: 5
   yIntervalRange: 5
+  accelertor: 0.3
   topWallTr: {fileID: 4000014060232480}
   btmWallTr: {fileID: 4000013760964060}
 --- !u!212 &212000011559294278
