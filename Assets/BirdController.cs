@@ -17,14 +17,18 @@ public class BirdController : MonoBehaviour
     IEnumerator KeyListener() {
         while (true) {
             if (Input.GetKey(upKey)) {
-                transform.Translate(2 * speed * Vector3.up * Time.deltaTime);
+                transform.Translate(1.5f * speed * Vector3.up * Time.deltaTime);
             }
             yield return null;
         }
     }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
+    
+    void OnTriggerEnter2D(Collider2D col) {
+        GameManager.Instance.setIsCollide(true);
         Debug.Log("Collision");
+    }
+
+    void OnTriggerExit2D(Collider2D col) {
+        GameManager.Instance.setIsCollide(false);
     }
 }
