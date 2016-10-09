@@ -22,4 +22,9 @@ public class BirdController : MonoBehaviour
             yield return null;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("Collision");
+    }
 }
