@@ -14,9 +14,7 @@ public class MainPlayer : MonoBehaviour {
     private float optSpeed;
 
     void Start () {
-        float yRange = Random.Range(yIntervalRange, 2* yIntervalRange);
-        topWallTr.localPosition = new Vector3(0, yRange, 0);
-        btmWallTr.localPosition = new Vector3(0, -yRange, 0);
+        Init();
         check = false;
         birdX = GameObject.Find("junkratBird").transform.position.x;
         optSpeed = GameManager.Instance.getOptSpeed();
@@ -24,15 +22,23 @@ public class MainPlayer : MonoBehaviour {
         StartCoroutine(DestroyObj());
         StartCoroutine(CollideListener());
     }
+
+    void Init() {
+        // float yRandom = Random.Range(-yRange, yRange);
+        transform.position = new Vector3(25, transform.position.y, transform.position.z);
+    }
 	
 	void Update () {
         transform.Translate((speed+optSpeed) * Vector3.left * Time.deltaTime);
     }
 
     IEnumerator DestroyObj() {
-        yield return new WaitForSeconds(destroyTime);
+        while (true) {
+            yield return new WaitForSeconds(destroyTime);
 
-        Destroy(this.gameObject);
+            Init();
+        }
+        // Destroy(this.gameObject);
     }
 
     IEnumerator CollideListener() {
