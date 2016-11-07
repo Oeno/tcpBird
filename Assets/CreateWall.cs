@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class CreateWall : MonoBehaviour {
@@ -6,18 +7,37 @@ public class CreateWall : MonoBehaviour {
     public float spawnTime = 3f;
     public float yRange = 5f;
     public int numWall = 5;
+    private Queue<GameObject> wallQueue = new Queue<GameObject>();
 
     void Start () {
+        InitWall(numWall);
         StartCoroutine(Spawner());
     }
 
-    IEnumerator Spawner() {
-        for (int i=0; i<numWall; i++) {
+    void InitWall(int num) {
+        for (int i=0; i<num; i++) {
             float yRandom = Random.Range(-yRange, yRange);
+            GameObject wall = (GameObject) Instantiate(wallPrefab, new Vector3(25, yRandom, 0), Quaternion.identity);
+            ReturnWall(wall);
+        }
+    }
 
-            Instantiate(wallPrefab, new Vector3(25, yRandom, 0), Quaternion.identity);
-
+    IEnumerator Spawner() {
+        while (true) {
+            GetWall();
             yield return new WaitForSeconds(spawnTime);
         }
     }
+
+    public GameObject GetWall() {
+        GameObject wall = wallQueue.Dequeue();
+        wall.SetActive(true);
+        return wall;
+    }
+
+    public void ReturnWall(GameObject wall) {
+        wall.SetActive(false);
+        wallQueue.Enqueue(wall);
+    }
+    
 }
