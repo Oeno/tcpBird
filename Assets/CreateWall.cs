@@ -16,7 +16,7 @@ public class CreateWall : MonoBehaviour {
     void InitWall(int num) {
         for (int i=0; i<num; i++) {
             float yRandom = Random.Range(-yRange, yRange);
-            GameObject wall = (GameObject)Instantiate(wallPrefab, new Vector3(25, yRandom, 0), Quaternion.identity);
+            GameObject wall = (GameObject)Instantiate(wallPrefab, new Vector3(11, yRandom, 0), Quaternion.identity);
             ReturnWall(wall);
         }
     }

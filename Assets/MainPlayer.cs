@@ -54,7 +54,7 @@ public class MainPlayer : MonoBehaviour {
                 check = true;
             }
 
-            if (wallX <= birdX-2.5f && !check) {
+            if (wallX <= birdX-2.5f && !check && !GameManager.Instance.IsCollide()) {
                 GameManager.Instance.AddScore();
                 check = true;
             }

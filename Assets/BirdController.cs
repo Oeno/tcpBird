@@ -28,7 +28,7 @@ public class BirdController : MonoBehaviour
         Debug.Log("Collision");
     }
 
-    void OnTriggerExit2D(Collider2D col) {
-        GameManager.Instance.setIsCollide(false);
-    }
+    // void OnTriggerExit2D(Collider2D col) {
+    //     GameManager.Instance.setIsCollide(false);
+    // }
 }
