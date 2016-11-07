@@ -15,7 +15,6 @@ public class MainPlayer : MonoBehaviour {
 
     void Start () {
         Init();
-        check = false;
         birdX = GameObject.Find("junkratBird").transform.position.x;
         optSpeed = GameManager.Instance.getOptSpeed();
 
@@ -24,6 +23,11 @@ public class MainPlayer : MonoBehaviour {
     }
 
     void Init() {
+        float yRange = Random.Range(yIntervalRange, 2* yIntervalRange);
+        check = false;
+        topWallTr.localPosition = new Vector3(0, yRange, 0);
+        btmWallTr.localPosition = new Vector3(0, -yRange, 0);
+
         // float yRandom = Random.Range(-yRange, yRange);
         transform.position = new Vector3(25, transform.position.y, transform.position.z);
     }
