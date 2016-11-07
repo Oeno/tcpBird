@@ -6,8 +6,7 @@ public class CreateWall : MonoBehaviour {
     public GameObject wallPrefab;
     public float spawnTime = 3f;
     public float yRange = 5f;
-    public int numWall = 5;
-    private Queue<GameObject> wallQueue = new Queue<GameObject>();
+    public int numWall = 10;
 
     void Start () {
         InitWall(numWall);
@@ -17,7 +16,7 @@ public class CreateWall : MonoBehaviour {
     void InitWall(int num) {
         for (int i=0; i<num; i++) {
             float yRandom = Random.Range(-yRange, yRange);
-            GameObject wall = (GameObject) Instantiate(wallPrefab, new Vector3(25, yRandom, 0), Quaternion.identity);
+            GameObject wall = (GameObject)Instantiate(wallPrefab, new Vector3(25, yRandom, 0), Quaternion.identity);
             ReturnWall(wall);
         }
     }
@@ -30,14 +29,14 @@ public class CreateWall : MonoBehaviour {
     }
 
     public GameObject GetWall() {
-        GameObject wall = wallQueue.Dequeue();
+        GameObject wall = GameManager.Instance.wallQueue.Dequeue();
         wall.SetActive(true);
         return wall;
     }
 
     public void ReturnWall(GameObject wall) {
         wall.SetActive(false);
-        wallQueue.Enqueue(wall);
+        GameManager.Instance.wallQueue.Enqueue(wall);
     }
     
 }

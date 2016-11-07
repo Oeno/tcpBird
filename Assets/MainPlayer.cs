@@ -39,8 +39,9 @@ public class MainPlayer : MonoBehaviour {
     IEnumerator DestroyObj() {
         while (true) {
             yield return new WaitForSeconds(destroyTime);
-
-            Init();
+             Init();
+             this.gameObject.SetActive(false);
+             GameManager.Instance.wallQueue.Enqueue(this.gameObject);
         }
         // Destroy(this.gameObject);
     }

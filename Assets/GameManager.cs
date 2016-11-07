@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour {
     int score = 0;  // 점수
     bool isCollide = false; // 충돌 여부 확인
     float optSpeed = 0f;  // 벽에 시간에 따른 추가 속도 부여
+    public Queue<GameObject> wallQueue = new Queue<GameObject>();
 
     void Awake() {
         Instance = this;
